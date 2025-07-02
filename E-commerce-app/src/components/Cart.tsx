@@ -37,14 +37,14 @@ export default function Cart() {
                   onClick={() => dispatch(removeFromCart(item.id))}
                   className="bg-red-500 text-white px-2 py-1 rounded"
                 >
-                  Remove
+                  Remove item
                 </button>
               </li>
             ))}
           </ul>
 
-          <p className="mt-4">Total Items: {totalItems}</p>
-          <p>Total Price: ${totalPrice.toFixed(2)}</p>
+          <p className="mt-4">Total Number of Items: {totalItems}</p>
+          <p>Final Price: ${totalPrice.toFixed(2)}</p>
 
           <button
             onClick={handleCheckout}
