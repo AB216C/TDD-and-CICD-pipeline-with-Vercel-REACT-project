@@ -1,4 +1,4 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { CartItem } from "./types";
 
 const initialState: CartItem[] = JSON.parse(sessionStorage.getItem('cart') || '[]');
