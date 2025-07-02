@@ -12,8 +12,7 @@ Brwose: http://localhost:5173
 
 ## Application Features
 
-The application is made of product inventory and shoppingcart and both user interface features were generated using React, React Query, FakeStoreApi, and Redux Toolkit. 
-React was used to render comp
+The application is made of product inventory and shoppingcart and both user interface features were generated using React, React Query, FakeStoreApi, and Redux Toolkit. React was used to render components, ReactQuery was essential for API request and cahing, Redux Tookit was used for managing global state for the cart while fakeStoreApi had all data to be displayed to the UI.
 
 
 
