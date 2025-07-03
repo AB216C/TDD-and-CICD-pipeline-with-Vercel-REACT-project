@@ -30,7 +30,7 @@ export default function Home() {
         onChange={e => setSelectedCategory(e.target.value)}
         value={selectedCategory}
       >
-        <option value="">All Categories</option>
+        <option value="">Categories</option>
         {categories?.map((cat: string) => (
           <option key={cat} value={cat}>{cat}</option>
         ))}
