@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../features/cart/cartSlice';
 import { useState } from 'react';
 import { fetchCategories, fetchProducts } from '../api/api';
+import '../App.css'
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ export default function Home() {
   if (isLoading) return <p>Loading...</p>;
 
   return (
-    <div className="p-4">
+    <div className="home">
       <h1 className="text-2xl font-bold mb-4">Product Inventory</h1>
 
       <select

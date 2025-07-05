@@ -40,3 +40,30 @@
 .read-the-docs {
   color: #888;
 }
+
+.cart {
+  background-color:white;
+  color:black;
+}
+
+.home {
+  background-color: white;
+  color:black;
+}
+
+img {
+  width:30%;
+  border-radius: 2px solid black;
+}
+
+.cart-item {
+  display:flex;
+  align-items:center;
+  background-color: #8f7878;
+  font-size: 30px;
+}
+
+
+.product {
+  background-color: #888;
+}
