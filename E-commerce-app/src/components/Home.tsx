@@ -48,7 +48,7 @@ export default function Home() {
             <p>Rating: {product.rating.rate} ⭐</p>
             <button
               onClick={() => dispatch(addToCart(product))}
-              className="mt-2 bg-blue-500 text-white px-3 py-1 rounded"
+              className="mt-2 bg-blue-500 text-white px-4 py-5 rounded mb-4 "
             >
               Add to Cart
             </button>

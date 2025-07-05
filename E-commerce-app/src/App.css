@@ -52,8 +52,9 @@
 }
 
 img {
-  width:30%;
+  width:35%;
   border-radius: 2px solid black;
+  margin-top:70px;
 }
 
 .cart-item {
@@ -65,5 +66,5 @@ img {
 
 
 .product {
-  background-color: #888;
+  background-color: #8f7878;
 }

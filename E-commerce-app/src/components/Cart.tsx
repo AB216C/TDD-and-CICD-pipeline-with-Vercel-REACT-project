@@ -22,7 +22,7 @@ export default function Cart() {
       <h2 className="text-xl font-bold mb-4">Shopping Cart</h2>
 
       {cart.length === 0 ? (
-        <p>Your cart is empty. Please add more items!</p>
+        <p>Your cart is empty. You're Welcome to add more items to the cart!</p>
       ) : (
         <>
           <ul className="product">
@@ -44,7 +44,7 @@ export default function Cart() {
             ))}
           </ul>
 
-          <p className="mt-4">Total Number of Items: {totalItems}</p>
+          <p className="mt-4 fs-4">Total Number of Items: {totalItems}</p>
           <p>Final Price: ${totalPrice.toFixed(2)}</p>
 
           <button
