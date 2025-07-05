@@ -1,4 +1,4 @@
-// src/components/Home.tsx
+
 import { useQuery } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../features/cart/cartSlice';
