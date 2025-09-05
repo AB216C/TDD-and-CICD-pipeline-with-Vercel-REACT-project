@@ -1,16 +1,19 @@
-name: Deploy to Vercel
+name: CI/CD - Build & Deploy to Vercel
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  deploy:
+  ci-cd:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🧾 Checkout
+      - name: 📥 Checkout code
         uses: actions/checkout@v3
 
       - name: 🟢 Setup Node.js
@@ -19,12 +22,18 @@ jobs:
           node-version: 18
 
       - name: 📦 Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: 🔨 Build
+      - name: 🧪 Run Lint
+        run: npm run lint
+
+      - name: 🧪 Run Tests
+        run: npm test
+
+      - name: 🏗️ Build App
         run: npm run build
 
       - name: 🚀 Deploy to Vercel
         run: |
           npm install -g vercel
-          vercel --token=${{ secrets.VERCEL_TOKEN }} --prod --yes
+          vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
