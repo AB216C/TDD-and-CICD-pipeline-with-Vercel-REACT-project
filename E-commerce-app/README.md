@@ -51,3 +51,6 @@ npm install --save-dev identity-obj-proxy
 
 
 
+Install Vercel CLI
+
+npm install -g vercel
