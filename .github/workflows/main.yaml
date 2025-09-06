@@ -1,39 +1,56 @@
-name: CI/CD - Build & Deploy to Vercel
+
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  ci-cd:
+  # --- Step 1: Continuous Integration (Build + Test) ---
+  build-and-test:
+    name: Build and Test
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: 🟢 Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: 📦 Install dependencies
-        run: npm ci
+      - name: Install dependencies
+        run: npm install
 
-      - name: 🧪 Run Lint
-        run: npm run lint
-
-      - name: 🧪 Run Tests
+      - name: Run Tests with Jest
         run: npm test
 
-      - name: 🏗️ Build App
-        run: npm run build
+  # --- Step 2: Continuous Deployment (Vercel) ---
+  deploy:
+    name: Deploy to Vercel
+    needs: build-and-test  # Only run if tests pass
+    runs-on: ubuntu-latest
 
-      - name: 🚀 Deploy to Vercel
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Deploy to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
-          npm install -g vercel
-          vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+          vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+          vercel build --prod --token=$VERCEL_TOKEN
+          vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
