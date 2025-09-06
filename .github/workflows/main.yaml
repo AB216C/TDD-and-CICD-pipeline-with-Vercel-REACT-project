@@ -1,4 +1,62 @@
 
+# name: CI/CD Pipeline
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   # --- Step 1: Continuous Integration (Build + Test) ---
+#   build-and-test:
+#     name: Build and Test
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 18
+
+#       - name: Install dependencies
+#         run: npm install
+
+#       - name: Run Tests with Jest
+#         run: npm test
+
+#   # --- Step 2: Continuous Deployment (Vercel) ---
+#   deploy:
+#     name: Deploy to Vercel
+#     needs: build-and-test  # Only run if tests pass
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 18
+
+#       - name: Install Vercel CLI
+#         run: npm install -g vercel
+
+#       - name: Deploy to Vercel
+#         env:
+#           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+#           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+#           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+#         run: |
+#           vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+#           vercel build --prod --token=$VERCEL_TOKEN
+#           vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+
+
+
 name: CI/CD Pipeline
 
 on:
@@ -7,9 +65,7 @@ on:
       - main
 
 jobs:
-  # --- Step 1: Continuous Integration (Build + Test) ---
   build-and-test:
-    name: Build and Test
     runs-on: ubuntu-latest
 
     steps:
@@ -22,15 +78,18 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd E-commerce-app
+          npm install
 
-      - name: Run Tests with Jest
-        run: npm test
+      - name: Run tests
+        run: |
+          cd E-commerce-app
+          npm test
 
-  # --- Step 2: Continuous Deployment (Vercel) ---
   deploy:
     name: Deploy to Vercel
-    needs: build-and-test  # Only run if tests pass
+    needs: build-and-test
     runs-on: ubuntu-latest
 
     steps:
@@ -46,11 +105,12 @@ jobs:
         run: npm install -g vercel
 
       - name: Deploy to Vercel
+        run: |
+          cd E-commerce-app
+          vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+          vercel build --prod --token=$VERCEL_TOKEN
+          vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: |
-          vercel pull --yes --environment=production --token=$VERCEL_TOKEN
-          vercel build --prod --token=$VERCEL_TOKEN
-          vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
