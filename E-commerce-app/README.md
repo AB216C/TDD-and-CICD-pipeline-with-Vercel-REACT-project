@@ -28,3 +28,26 @@ In addition, Home.tsx file contain imported and important features. For example,
 
 Lastly, main.tsx component has a very important feature which is shown using this code:import { QueryClient, QueryClientProvider } from '@tanstack/react-query' which allows the use of React Query for data fetching, caching, and updating. Plus, as the app get wrapped inside queryClientProvider, it automatically give access to all components to useQuery() and useMutation().
 
+
+TESTS DESCRIPTIONS
+
+
+
+
+npm install --save-dev @babel/preset-env @babel/preset-typescript @babel/preset-react babel-jest
+
+
+npm install --save-dev jest ts-jest @types/jest @babel/preset-env @babel/preset-react @babel/preset-typescript babel-jest
+
+Packages installations
+
+npm install --save-dev redux-mock-store @types/redux-mock-store jest ts-jest @testing-library/react @testing-library/jest-dom @testing-library/user-event @types/jest typescript react react-dom @types/react @types/react-dom react-redux @reduxjs/toolkit
+
+
+npm install --save-dev @testing-library/jest-dom
+
+
+npm install --save-dev identity-obj-proxy
+
+
+
