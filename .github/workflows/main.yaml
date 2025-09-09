@@ -49,9 +49,9 @@ jobs:
       - name: Deploy to Vercel
         run: |
           cd E-commerce-app
-          vercel pull --yes --environment=production --token=$VERCEL_TOKEN
-          vercel build --prod --token=$VERCEL_TOKEN
-          vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+          vercel pull --yes --environment=production --token=$VERCEL_TOKEN --cwd=E-commerce-app
+          vercel build --prod --token=$VERCEL_TOKEN --cwd=E-commerce-app
+          vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN --cwd=E-commerce-app
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
