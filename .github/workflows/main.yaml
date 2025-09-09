@@ -1,63 +1,4 @@
 
-# name: CI/CD Pipeline
-
-# on:
-#   push:
-#     branches:
-#       - main
-
-# jobs:
-#   build-and-test:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v4
-
-#       - name: Setup Node.js
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: 18
-
-#       - name: Install dependencies
-#         run: |
-#           cd E-commerce-app
-#           npm install
-
-#       - name: Run tests
-#         run: |
-#           cd E-commerce-app
-#           npm test
-
-#   deploy:
-#     name: Deploy to Vercel
-#     needs: build-and-test
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v4
-
-#       - name: Setup Node.js
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: 18
-
-#       - name: Install Vercel CLI
-#         run: npm install -g vercel
-
-#       - name: Deploy to Vercel
-#         run: |
-#           vercel pull --yes --environment=production --token=$VERCEL_TOKEN --cwd=TDD-and-CICD-pipeline-with-Vercel-REACT-project/E-commerce-app
-#           vercel build --prod --token=$VERCEL_TOKEN --cwd=TDD-and-CICD-pipeline-with-Vercel-REACT-project/E-commerce-app
-#           vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN --cwd=TDD-and-CICD-pipeline-with-Vercel-REACT-project/E-commerce-app
-#         env:
-#           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-#           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-#           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
-
-
 name: CI/CD Pipeline
 
 on:
@@ -73,7 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          path: .  # ✅ Prevents folder nesting
+          path: . 
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -99,7 +40,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          path: .  # ✅ Prevents folder nesting
+          path: . 
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
