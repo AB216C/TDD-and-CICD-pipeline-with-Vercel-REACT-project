@@ -1,11 +1,11 @@
 {
-  "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ]
+    "version": 2,
+    "buildCommand": "cd E-commerce-app && npm install && npm run build",
+    "outputDirectory": "E-commerce-app/dist",
+    "routes": [
+        {
+        "src": "/(.*)",
+        "dest": "/index.html"
+        }
+    ]
 }
