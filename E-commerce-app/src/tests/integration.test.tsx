@@ -1,5 +1,3 @@
-
-// __tests__/CartIntegration.test.tsx
 import { render, screen, fireEvent } from '@testing-library/react';
 import Home from '../components/Home';
 import Cart from '../components/Cart';
@@ -10,7 +8,7 @@ import cartReducer from '../features/cart/cartSlice';
 import React from 'react';
 import '@testing-library/jest-dom';
 
-// Helper to render with Redux and React Query providers
+// This is a helper to render with Redux and React Query providers
 function renderWithProviders(ui: React.ReactNode, { preloadedState = {} } = {}) {
     const store = configureStore({
     reducer: { cart: cartReducer },
@@ -57,32 +55,30 @@ describe('Integration Test: Add to Cart updates Cart', () => {
         </>
     );
 
-    // Wait for the product title to appear (product list)
+    // Now Waiting for the product title to appear.
     const productTitle = await screen.findByRole('heading', { name: /Integration Product/i });
     expect(productTitle).toBeInTheDocument();
 
-    // Click the Add to Cart button next to that product
+    // Clicking the Add to Cart button next to that product
     // Find the button associated with this product
-    // Assuming button is next to the product title, you can use DOM traversal or get all buttons and filter
-    // Here, we just get by role button named "Add to Cart"
+    // Using the get by role button named "Add to Cart"
     const addButton = screen.getByRole('button', { name: /add to cart/i });
     fireEvent.click(addButton);
 
-    // After clicking, wait for the cart to update
-    // In cart, check product title and quantity
-    // Use findByRole to get the cart heading first, just to be sure it's rendered
+    // After click, waiting for the cart to update
+    // Within cart, checking the product title and quantity
+    // Using findByRole to get the cart heading first, and to be sure it's rendered
     const cartHeading = await screen.findByRole('heading', { name: /shopping cart/i });
     expect(cartHeading).toBeInTheDocument();
 
-    // Now check that cart contains product title (can appear twice, but we assert at least one)
-    // Use findAllByText since product title appears multiple times (product list and cart)
+    // Checking that cart contains product title.
     const cartItems = await screen.findAllByText(/Integration Product/i);
     expect(cartItems.length).toBeGreaterThanOrEqual(1);
 
-    // Check quantity text in the cart
+    // Checking the quantity text in the cart
     expect(screen.getByText(/Qty: 1/i)).toBeInTheDocument();
 
-    // Check final price text in the cart (format may vary based on your component)
+    // Checking the final price text in the cart.
     expect(screen.getByText(/Final Price: \$29.99/i)).toBeInTheDocument();
     });
 });

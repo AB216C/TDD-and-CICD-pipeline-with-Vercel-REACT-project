@@ -1,4 +1,3 @@
-// __tests__/Cart.test.tsx
 import { render, screen, fireEvent } from '@testing-library/react';
 import Cart from '../components/Cart';
 import { Provider } from 'react-redux';
@@ -8,7 +7,7 @@ import '@testing-library/jest-dom';
 
 const mockStore = configureStore([]);
 
-// Mock the action creators
+// Now Mocking the action creators
 jest.mock('../features/cart/cartSlice', () => ({
     clearCart: jest.fn(() => ({ type: 'CLEAR_CART' })),
     removeFromCart: jest.fn((id) => ({ type: 'REMOVE_FROM_CART', payload: id })),
@@ -55,7 +54,7 @@ describe('Cart Component', () => {
     expect(screen.getByText(/Sample Product/i)).toBeInTheDocument();
     expect(screen.getByText(/Qty: 2/i)).toBeInTheDocument();
 
-    // Use getByRole for better accessibility querying
+    // Using the getByRole for better accessibility querying
     const removeBtn = screen.getByRole('button', { name: /remove item/i });
     fireEvent.click(removeBtn);
 

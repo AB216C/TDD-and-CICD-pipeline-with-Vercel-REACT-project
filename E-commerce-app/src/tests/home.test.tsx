@@ -40,12 +40,12 @@ describe('Home Component', () => {
         </Provider>
     );
 
-    // Wait for all product titles to appear, get all and pick the first one
+    // Now Waiting for all product titles to appear, to retrieve all,  and pick the first one
     const productTitles = await screen.findAllByText(/Test Product/i);
     expect(productTitles.length).toBeGreaterThan(0);
     expect(productTitles[0]).toBeInTheDocument();
 
-    // Interact with the category select dropdown
+    // Now checking how to Interact with the product category  by selecting the dropdown
     const select = screen.getByRole('combobox');
     fireEvent.change(select, { target: { value: 'electronics' } });
 
